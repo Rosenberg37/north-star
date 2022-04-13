@@ -7,7 +7,7 @@
 
 * **Zhou Changjiang**: Requirement Analyst & Programmer
 
-Hiring:
+**Hiring**:
 
 We welcome you to join our team if you are interested in **algorithms**.
 
