@@ -56,11 +56,11 @@ Specifies the technical details of the software system: i.e., model-view-control
 Component Diagram (CD) specifies how the system is parted according to the use cases analyzed from RS. 
 -->
 
-![image-20220411043942923](/Users/jindong/Library/Application Support/typora-user-images/image-20220411043942923.png)
+![](../assets/a.png)
 
 #### \<Deploy Diagram\>
 
-![image-20220411044056576](/Users/jindong/Library/Application Support/typora-user-images/image-20220411044056576.png)
+![](../assets/b.png)
 
 ## Module Interface Design
 
@@ -86,7 +86,7 @@ Each group should contribute, via diagrams either for the whole system or for he
 
 
 
-![image-20220411140125729](/Users/jindong/Library/Application Support/typora-user-images/image-20220411140125729.png)
+![](../assets/c.png)
 
 
 
