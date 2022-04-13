@@ -29,4 +29,4 @@
 
 ### System Design
 
-Here is the link of [system design documents](documents).
+Here is the [system design documents](documents).
