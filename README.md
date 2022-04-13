@@ -23,7 +23,7 @@
 
   we use the **Decision Tree** algorithm to Implement the function of classification.
 
-  <img src="assets/classification.jpg" alt="classification" style="zoom: 25%;" />
+  <img src="assets/classification.jpg" alt="classification" style="zoom: 10%;" />
 
 ## 4.13 Progress achieved
 
