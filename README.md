@@ -7,6 +7,8 @@
 
 * **Zhou Changjiang**: Requirement Analyst & Programmer
 
+Hiring:
+
 We welcome you to join our team if you are interested in **algorithms**.
 
 We expect you to understand the basics of **machine learning** and to be able to use **Python** and the **Pytorch** framework.
