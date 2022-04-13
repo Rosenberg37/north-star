@@ -56,11 +56,11 @@ Specifies the technical details of the software system: i.e., model-view-control
 Component Diagram (CD) specifies how the system is parted according to the use cases analyzed from RS. 
 -->
 
-![](../assets/a.png)
+![](../assets/Class Diagram.png)
 
 #### \<Deploy Diagram\>
 
-![](../assets/b.png)
+![](../assets/Component Diagram.png)
 
 ## Module Interface Design
 
@@ -86,7 +86,7 @@ Each group should contribute, via diagrams either for the whole system or for he
 
 
 
-![](../assets/c.png)
+![](../assets/Deploy Diagram.png)
 
 
 
