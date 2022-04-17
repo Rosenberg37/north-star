@@ -35,3 +35,9 @@ We expect you to understand the basics of **machine learning** and to be able to
 ### System Design
 
 Here is the [system design documents](documents).
+
+## 4.17 Progress achieved
+
+### Rapid prototyping model
+
+Macro-F reach 98.3% under the GRU network.

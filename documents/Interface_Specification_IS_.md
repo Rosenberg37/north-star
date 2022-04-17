@@ -2,10 +2,10 @@
 
 Revision History: 
 
-| Date   | Author   | Description                                |
-| ------ | -------- | ------------------------------------------ |
-| Apr 11 | DONG Jin | Converted the template & the first version |
-|        |          |                                            |
+| Date   | Author    | Description                                |
+|--------|-----------|--------------------------------------------|
+| Apr 11 | DONG Jin  | Converted the template & the first version |
+| Apr 16 | Wen Xueru | Add test cases                             |
 
 ## Introduction
 
