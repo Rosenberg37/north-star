@@ -41,3 +41,11 @@ Here is the [system design documents](documents).
 ### Rapid prototyping model
 
 Macro-F reach 98.3% under the GRU network.
+
+## 4.20 Progress achieved
+
+### Tentative implement
+
+Macro-F1 reach 99.9% with separated datasets.
+
+<img src="assets/result.png" alt="classification" style="zoom: 10%;" />

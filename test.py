@@ -1,18 +1,14 @@
-import json
+import argparse
+import codecs
 import sys
 
 import torch
-from torch.nn import functional
-from torch.utils.data import DataLoader
-from tqdm import tqdm
-import os
-from algo import Model
-from utils.dataset import MyDataset
-import argparse
-import codecs
 from sklearn import metrics
 
-sys.stdin = codecs.open("sit.csv", 'r', encoding='utf-8')
+from algo import Model
+from utils.dataset import MyDataset
+
+sys.stdin = codecs.open("whatever.csv", 'r', encoding='utf-8')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -24,7 +20,7 @@ if __name__ == "__main__":
     window_size = 10
     label2id, id2label = MyDataset.convert2id()
     predict, gold = [], []
-    while(True):
+    while True:
         x = sys.stdin.readline()
         if len(x) == 0:
             break
