@@ -3,26 +3,27 @@ import os
 import pandas as pd
 import torch
 from torch.utils.data import Dataset, DataLoader
+from tqdm import tqdm
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
 
 class CustomDataset(Dataset):
-    def __init__(self, pathname: str, window_size: int = 10, mode: str = 'train'):
+    def __init__(self, data_directory_path: str, window_size: int = 10, mode: str = 'train'):
         self.window = window_size
 
-        path_list = []
-        for dir_path, dir_names, filenames in os.walk(pathname):
-            for filename in filenames:
-                path = os.path.join(dir_path, filename)
-                if path.endswith('.xlsx') and CustomDataset.get_motion(path) is not None:
-                    path_list.append(path)
+        data_paths = []
+        if os.path.exists(data_directory_path):
+            data_paths = os.listdir(data_directory_path)
+            data_paths = filter(lambda p: p.endswith('.csv') and CustomDataset.get_motion(p), data_paths)
+            data_paths = list(map(lambda p: os.path.join(data_directory_path, p), data_paths))
+
         label2id, id2label = CustomDataset.convert2id()
         self.samples, self.golds = [], []
-        for path in path_list:
+        for path in tqdm(data_paths, desc='Reading data'):
             label = CustomDataset.get_motion(path)
             id = label2id[label]
-            sample = torch.tensor(list(pd.read_excel(path, header=None).values)).float().to(device)
+            sample = torch.tensor(list(pd.read_csv(path, header=None).values)).float().to(device)
             self.samples.append(sample)
             self.golds.append(id)
         self.length = [0] + [sample.shape[0] - self.window + 1 for sample in self.samples]
