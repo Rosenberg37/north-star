@@ -10,7 +10,7 @@ from algo import Model
 from utils.dataset import MyDataset
 import argparse
 import codecs
-
+from sklearn import metrics
 
 sys.stdin = codecs.open("sit.csv", 'r', encoding='utf-8')
 
@@ -22,9 +22,13 @@ if __name__ == "__main__":
     model.load_state_dict(torch.load(args.in_model_file))
     queue = []
     window_size = 10
-    _, id2label = MyDataset.convert2id()
+    label2id, id2label = MyDataset.convert2id()
+    i = 0
+    predict, gold = [], []
     while(True):
         x = sys.stdin.readline()
+        if len(x) == 0:
+            break
         x = [float(i) for i in x.split(',')]
         assert len(x) == 90
         queue.append(x)
@@ -32,8 +36,11 @@ if __name__ == "__main__":
             continue
         sample = torch.tensor(queue).cuda()
         with torch.no_grad():
-            pred_tensor = model(sample.unsqueeze(0))
-            pred = id2label[pred_tensor.argmax().item()]
-            print(pred)
+            pred_id = model(sample.unsqueeze(0)).argmax().item()
+            gold.append(label2id['downstair'])
+            predict.append(pred_id)
+            pred = id2label[pred_id]
+        print(i)
+        i += 1
 
-
+    print(metrics.classification_report(gold, predict))
