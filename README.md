@@ -46,6 +46,8 @@ Macro-F1 reach 98.3% under the GRU network.
 
 ### Tentative implement
 
-Macro-F1 reach 99.9% with separated datasets.
+Macro-F1 reach 100.0% with separated datasets.
+
+Speed up the IO by transforming data format into csv.
 
 <img src="assets/result.png" alt="classification" style="zoom: 10%;" />
