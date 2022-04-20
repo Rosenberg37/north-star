@@ -6,6 +6,7 @@ import os
 from algo import Model
 from utils.dataset import MyDataset
 import argparse
+from sklearn import metrics
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -18,7 +19,7 @@ if __name__ == '__main__':
     dataloader = DataLoader(dataset, batch_size=128, shuffle=True)
     model = Model().cuda()
 
-    epoch = 100
+    epoch = 10
     best = 0
     optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
 
@@ -37,3 +38,11 @@ if __name__ == '__main__':
         tbar.close()
     torch.save(model.state_dict(), args.out_model_file)
 
+    predicts, golds = [], []
+    with torch.no_grad():
+        eval_dataset = MyDataset('eval', mode='test', window_size=window_size)
+        eva_dataloader = DataLoader(eval_dataset, batch_size=128, shuffle=False)
+        for batch_index, [data, gold] in enumerate(dataloader):
+            predicts += model(data).argmax(dim=1).tolist()
+            golds += gold.tolist()
+    print(metrics.classification_report(golds, predicts))

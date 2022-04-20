@@ -23,7 +23,6 @@ if __name__ == "__main__":
     queue = []
     window_size = 10
     label2id, id2label = MyDataset.convert2id()
-    i = 0
     predict, gold = [], []
     while(True):
         x = sys.stdin.readline()
@@ -40,7 +39,5 @@ if __name__ == "__main__":
             gold.append(label2id['downstair'])
             predict.append(pred_id)
             pred = id2label[pred_id]
-        print(i)
-        i += 1
 
     print(metrics.classification_report(gold, predict))
