@@ -1,24 +1,26 @@
+import os
+
 import pandas as pd
 import torch
-from torch import Tensor
 from torch.utils.data import Dataset, DataLoader
-import os
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
-class MyDataset(Dataset):
-    def __init__(self, pathname, mode='train', window_size=10):
+
+class CustomDataset(Dataset):
+    def __init__(self, pathname: str, window_size: int = 10, mode: str = 'train'):
         self.window = window_size
-        pathlst = []
-        for dirpath, dirnames, filenames in os.walk(pathname):
+
+        path_list = []
+        for dir_path, dir_names, filenames in os.walk(pathname):
             for filename in filenames:
-                path = os.path.join(dirpath, filename)
-                if path.endswith('.xlsx') and MyDataset.get_motion(path) is not None:
-                    pathlst.append(path)
-        label2id, id2label = MyDataset.convert2id()
+                path = os.path.join(dir_path, filename)
+                if path.endswith('.xlsx') and CustomDataset.get_motion(path) is not None:
+                    path_list.append(path)
+        label2id, id2label = CustomDataset.convert2id()
         self.samples, self.golds = [], []
-        for path in pathlst:
-            label = MyDataset.get_motion(path)
+        for path in path_list:
+            label = CustomDataset.get_motion(path)
             id = label2id[label]
             sample = torch.tensor(list(pd.read_excel(path, header=None).values)).float().to(device)
             self.samples.append(sample)
@@ -49,19 +51,22 @@ class MyDataset(Dataset):
         gold = self.golds[sample_index]
         return sample, gold
 
+    @staticmethod
     def get_motion(pathname: str):
-        motion = ['sit', 'downstair', 'upstair', 'stand', 'run', 'walk']
+        motion = ['sit', 'downstairs', 'upstairs', 'stand', 'run', 'walk']
         for i in motion:
             if i in pathname:
                 return i
         return None
 
+    @staticmethod
     def convert2id():
-        label2id = {'sit': 0, 'downstair': 4, 'upstair': 3, 'stand': 1, 'run': 5, 'walk':2}
-        id2label = {0: 'sit', 1: 'stand', 2: 'walk', 3: 'upstair', 4: 'downstair', 5: 'run'}
+        label2id = {'sit': 0, 'downstairs': 4, 'upstairs': 3, 'stand': 1, 'run': 5, 'walk': 2}
+        id2label = {0: 'sit', 1: 'stand', 2: 'walk', 3: 'upstairs', 4: 'downstairs', 5: 'run'}
         return label2id, id2label
 
+
 if __name__ == '__main__':
-    dataset = MyDataset('../data')
+    dataset = CustomDataset('../data')
     dataloader = DataLoader(dataset, batch_size=128, shuffle=True)
     print(next(iter(dataloader)))

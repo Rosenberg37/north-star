@@ -1,21 +1,23 @@
+import argparse
+
 import torch
+from sklearn import metrics
 from torch.nn import functional
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-import os
+
 from algo import Model
-from utils.dataset import MyDataset
-import argparse
-from sklearn import metrics
+from utils.dataset import CustomDataset
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_file", type=str, default='data')
-    parser.add_argument('--out_model_file', type=str, default='out_model_file')
+    parser.add_argument('--out_model_file', type=str, default='cache/out_model_file.pt')
     parser.add_argument('--in_model_file', type=str, default='None')
     args = parser.parse_args()
+
     window_size = 10
-    dataset = MyDataset(args.data_file, mode='train', window_size=window_size)
+    dataset = CustomDataset(args.data_file, mode='train', window_size=window_size)
     dataloader = DataLoader(dataset, batch_size=128, shuffle=True)
     model = Model().cuda()
 
@@ -40,7 +42,7 @@ if __name__ == '__main__':
 
     predicts, golds = [], []
     with torch.no_grad():
-        eval_dataset = MyDataset('eval', mode='test', window_size=window_size)
+        eval_dataset = CustomDataset('eval', mode='test', window_size=window_size)
         eva_dataloader = DataLoader(eval_dataset, batch_size=128, shuffle=False)
         for batch_index, [data, gold] in enumerate(dataloader):
             predicts += model(data).argmax(dim=1).tolist()
