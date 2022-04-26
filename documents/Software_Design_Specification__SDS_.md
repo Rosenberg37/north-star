@@ -1,6 +1,6 @@
 # Software Design Specification (SDS)
 
-Revision History: 
+Revision History:
 
 <!--
 The server and client documents should be combined into one for a single project
@@ -22,7 +22,6 @@ The server and client documents should be combined into one for a single project
 <!--
 Every technical document should clearly specify who the document is written for and what purpose the document should serve for each intended audience. This section describes the purpose and audience for the Concept of Operations and the Software Requirements.
 -->
-    
 
 ### How to use the document
 
@@ -56,9 +55,7 @@ Specifies the technical details of the software system: i.e., model-view-control
 Component Diagram (CD) specifies how the system is parted according to the use cases analyzed from RS. 
 -->
 
-![compnent_diagram](../assets/compnent_diagram.png)
-
-
+![component_diagram](../assets/Component_diagram.png)
 
 ## Module Interface Design
 
@@ -70,8 +67,6 @@ It specifies the contracts with which the modules communicate.
 Mogic for System Interface Specifications, extra template available; all groups should contribute via interface design of her own module.
 -->
 
-
-
 ## Detailed Design
 
 <!--
@@ -81,9 +76,6 @@ It specifies the design information inside the modules.
 <!--
 Each group should contribute, via diagrams either for the whole system or for her module. Optional diagrams are ER diagram, Sequence diagram, Class diagram
 -->
-
-
-
 
 ### Server Detailed Design
 
@@ -104,6 +96,7 @@ Each group should contribute, via diagrams either for the whole system or for he
 |         |             |
 
 #### Acronyms and abbreviations
+
 | Acronym or Abbreviation | Definitions |
 | ----------------------- | ----------- |
 |                         |             |
