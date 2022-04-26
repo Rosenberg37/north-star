@@ -31,7 +31,7 @@ class Trainer:
         self.__dict__.update(parser.parse_args().__dict__)
         return self
 
-    def __call__(self, *args, **kwargs):
+    def train(self):
         dataset = CustomDataset(self.data_file, window_size=self.window_size)
         dataloader = DataLoader(dataset, batch_size=128, shuffle=True)
 
@@ -67,6 +67,9 @@ class Trainer:
     @staticmethod
     def model_init():
         return Model().cuda()
+
+    def __call__(self):
+        return self.train()
 
 
 if __name__ == '__main__':

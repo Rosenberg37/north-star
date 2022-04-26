@@ -17,7 +17,7 @@ class Predictor:
         self.window_size = window_size
         self.model = self.model_init()
 
-    def __call__(self):
+    def predict(self):
         model = Model().cuda()
         model.load_state_dict(torch.load(self.in_model_file))
 
@@ -50,6 +50,9 @@ class Predictor:
         self.model = Model().cuda()
         self.model.load_state_dict(torch.load(self.in_model_file))
         return self.model
+
+    def __call__(self):
+        return self.predict()
 
 
 if __name__ == "__main__":
