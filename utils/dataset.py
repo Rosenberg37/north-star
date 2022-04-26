@@ -9,23 +9,31 @@ device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
 
 class CustomDataset(Dataset):
-    def __init__(self, data_directory_path: str, window_size: int = 10, mode: str = 'train'):
+    label2idx = {
+        'sit': 0,
+        'stand': 1,
+        'walk': 2,
+        'upstairs': 3,
+        'downstairs': 4,
+        'run': 5
+    }
+    idx2label = dict(zip(label2idx.values(), label2idx.keys()))
+
+    def __init__(self, data_directory_path: str, window_size: int = 10):
         self.window = window_size
 
         data_paths = []
         if os.path.exists(data_directory_path):
             data_paths = os.listdir(data_directory_path)
-            data_paths = filter(lambda p: p.endswith('.csv') and CustomDataset.get_motion(p), data_paths)
+            data_paths = list(filter(lambda p: p.endswith('.csv') and self.get_motion(p), data_paths))
             data_paths = list(map(lambda p: os.path.join(data_directory_path, p), data_paths))
 
-        label2id, id2label = CustomDataset.convert2id()
         self.samples, self.golds = [], []
         for path in tqdm(data_paths, desc='Reading data'):
-            label = CustomDataset.get_motion(path)
-            id = label2id[label]
-            sample = torch.tensor(list(pd.read_csv(path, header=None).values)).float().to(device)
-            self.samples.append(sample)
-            self.golds.append(id)
+            idx = self.label2idx[self.get_motion(path)]
+            sample = torch.as_tensor(pd.read_csv(path, header=None).values, dtype=torch.float)
+            self.samples.append(sample.cuda())
+            self.golds.append(idx)
         self.length = [0] + [sample.shape[0] - self.window + 1 for sample in self.samples]
         for i in range(1, len(self.length)):
             self.length[i] += self.length[i - 1]
@@ -59,12 +67,6 @@ class CustomDataset(Dataset):
             if i in pathname:
                 return i
         return None
-
-    @staticmethod
-    def convert2id():
-        label2id = {'sit': 0, 'downstairs': 4, 'upstairs': 3, 'stand': 1, 'run': 5, 'walk': 2}
-        id2label = {0: 'sit', 1: 'stand', 2: 'walk', 3: 'upstairs', 4: 'downstairs', 5: 'run'}
-        return label2id, id2label
 
 
 if __name__ == '__main__':

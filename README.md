@@ -17,8 +17,8 @@ We expect you to understand the basics of **machine learning** and to be able to
 ### Requirement Analysis 
 
 - The server or potential platform user intend to pretrain the model for common people and further user-specified fine-tune process.
-- The server or potential platform user wants  to change the model to make it the most suitable model for his or her.  
-- The server or potential platform user  wants to predict the future mode of the user.
+- The server or potential platform user wants to change the model to make it the most suitable model for his or her.  
+- The server or potential platform user wants to predict the future mode of the user.
 - The server or potential platform user intends to switch the scene to adapt to the requirements of specific scenarios.
 - The server or potential platform user intends to select the algorithm to achieve the desired effect.
 
@@ -46,7 +46,7 @@ Macro-F1 reach 98.3% under the GRU network.
 
 ### Tentative implement
 
-Macro-F1 reach 100.0% with separated datasets.
+Macro-F1 reach 98.0% with separated datasets.
 
 Speed up the IO by transforming data format into csv.
 
