@@ -54,3 +54,7 @@ Macro-F1 reach 98.0% with separated datasets.
 Speed up the IO by transforming data format into csv.
 
 <img src="assets/result.png" alt="classification" style="zoom: 10%;" />
+
+## 4.26 Progress achieved
+
+### Tentative test document filled.
