@@ -15,11 +15,10 @@ class Predictor:
     def __init__(self, window_size: int):
         self.in_model_file = None
         self.window_size = window_size
-        self.model = self.model_init()
+        self.model = None
 
     def predict(self):
-        model = Model().cuda()
-        model.load_state_dict(torch.load(self.in_model_file))
+        self.model = self.model_init()
 
         queue = []
         predict, gold = [], []
@@ -34,8 +33,8 @@ class Predictor:
                 continue
             sample = torch.tensor(queue).cuda()
             with torch.no_grad():
-                predict_id = model(sample.unsqueeze(0)).argmax().item()
-                gold.append(CustomDataset.label2id['downstairs'])
+                predict_id = self.model(sample.unsqueeze(0)).argmax().item()
+                gold.append(CustomDataset.label2idx['downstairs'])
                 predict.append(predict_id)
 
         print(metrics.classification_report(gold, predict))
