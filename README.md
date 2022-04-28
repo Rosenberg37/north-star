@@ -13,7 +13,8 @@ We welcome you to join our team if you are interested in **algorithms**.
 
 We expect you to understand the basics of **machine learning** and to be able to use **Python** and the **Pytorch** framework.
 
-### Contact: wenxr2119@email.jlu.edu.cn
+### Contact: wenxr2119@mails.jlu.edu.cn
+### Contact: 2577273670@qq.com
 
 ## 3.30 Progress achieved
 

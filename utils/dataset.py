@@ -19,7 +19,7 @@ class CustomDataset(Dataset):
     }
     idx2label = dict(zip(label2idx.values(), label2idx.keys()))
 
-    def __init__(self, data_directory_path: str, window_size: int = 10):
+    def __init__(self, data_directory_path: str, window_size: int = 20):
         self.window = window_size
 
         data_paths = []
@@ -60,12 +60,10 @@ class CustomDataset(Dataset):
         gold = self.golds[sample_index]
         return sample, gold
 
-    @staticmethod
-    def get_motion(pathname: str):
-        motion = ['sit', 'downstairs', 'upstairs', 'stand', 'run', 'walk']
-        for i in motion:
-            if i in pathname:
-                return i
+    def get_motion(self, pathname: str):
+        for name in list(self.label2idx.keys()):
+            if name in pathname:
+                return name
         return None
 
 

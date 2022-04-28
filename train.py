@@ -58,6 +58,7 @@ class Trainer:
                     predicts += self.model(data).argmax(dim=1).tolist()
                     golds += gold.tolist()
             print(metrics.classification_report(golds, predicts))
+            print(metrics.confusion_matrix(golds, predicts))
 
         torch.save(self.model.state_dict(), self.out_model_file)
 
@@ -73,6 +74,6 @@ class Trainer:
 
 
 if __name__ == '__main__':
-    trainer = Trainer(epochs=50, window_size=10)
+    trainer = Trainer(epochs=5, window_size=10)
     trainer.parse()
     trainer()

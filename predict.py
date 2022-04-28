@@ -2,13 +2,14 @@ import argparse
 import codecs
 import sys
 
+import pandas as pd
 import torch
 from sklearn import metrics
 
 from algo import Model
-from utils.dataset import CustomDataset
 
 sys.stdin = codecs.open("whatever.csv", 'r', encoding='utf-8')
+gold_file = list(pd.read_csv('ans.csv', header=None).values)
 
 
 class Predictor:
@@ -19,7 +20,7 @@ class Predictor:
 
     def predict(self):
         self.model = self.model_init()
-
+        i = 0
         queue = []
         predict, gold = [], []
         while True:
@@ -30,12 +31,15 @@ class Predictor:
             assert len(x) == 90
             queue.append(x)
             if len(queue) < self.window_size:
+                i += 1
                 continue
             sample = torch.tensor(queue).cuda()
             with torch.no_grad():
                 predict_id = self.model(sample.unsqueeze(0)).argmax().item()
-                gold.append(CustomDataset.label2idx['downstairs'])
+                gold.append(gold_file[i])
                 predict.append(predict_id)
+                print("predict: %d   gold: %d" % (predict_id, gold_file[i]))
+                i += 1
 
         print(metrics.classification_report(gold, predict))
 
