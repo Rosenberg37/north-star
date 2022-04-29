@@ -5,19 +5,17 @@ Revision History:
 <style>#rev +table td:nth-child(1) { white-space: nowrap }</style>
 <div id="rev"></div>
 
-| Date   | Author    | Description                   |
-|--------|-----------|-------------------------------|
-| Apr 20 | Ciel ZHAO | Converted the template        |
-| Apr 26 | Wen Xueru | Provided the TR of Algorithm  |
+| Date   | Author    | Description                     |
+|--------|-----------|---------------------------------|
+| Apr 20 | Ciel ZHAO | Converted the template          |
+| Apr 26 | Wen Xueru | Provided the TR of Algorithm    |
+| Apr 26 | Wen Xueru | Fill in the necessary contents. |
 
 [toc]
 
 ## Introduction
 
-### Intended Audience and Purpose
-
 This document provides the testing method and results, corresponding to the requirement from the customer. It consists of 3 parts, the testing cases, the test plan, and the testing results.
-
 
 ### How to use the document
 
@@ -25,9 +23,7 @@ You may refer to the content section for the structure of the document, in which
 
 ## Testing Cases
 
-<!--
-In this section, each team propose their testing cases on unit and module testing.
--->
+Testing cases on unit and module testing are proposed.
 
 - Unit testing considers checking a single component of the system.
 - Module testing considers checking overlap modules in the system.
@@ -44,7 +40,9 @@ In this section, each team propose their testing cases on unit and module testin
 - [ ] Report error if data_file is not correctly formatted.
 - [ ] Report error if fail to create out_model_file.
 - [ ] Save the model parameters and corresponding performance index.
+
 ##### Test 2.Fine tine the model.
+
 - [ ] Use `train.py --data_file * --out_model_file * --in_model_file *` to fine tune a model.
 - [ ] Report error if data_file is not exist.
 - [ ] Report error if data_file is not readable.
