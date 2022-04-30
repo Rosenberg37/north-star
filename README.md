@@ -26,7 +26,7 @@ We expect you to understand the basics of **machine learning** and to be able to
 - The server or potential platform user intends to switch the scene to adapt to the requirements of specific scenarios.
 - The server or potential platform user intends to select the algorithm to achieve the desired effect.
 
-### rapid prototyping model
+### Rapid prototyping model
 
 - **Classification**
 
