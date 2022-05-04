@@ -9,7 +9,6 @@ class Predictor:
     def __init__(self, in_model_file: str):
         self.model = utils.Model(utils.data_size)
         self.model.load_state_dict(torch.load(in_model_file))
-        self.window_size = utils.window_size
 
     def predict(self):
         queue = []
@@ -22,7 +21,7 @@ class Predictor:
                 raise RuntimeError(f"Unexpected data input length. Expected:{utils.data_size}")
             queue.append(x)
 
-            if len(queue) < self.window_size:
+            if len(queue) < utils.window_size:
                 continue
 
             sample = torch.tensor(queue)
