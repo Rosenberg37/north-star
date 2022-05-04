@@ -16,7 +16,10 @@ class Predictor:
             x = sys.stdin.readline()
             if len(x) == 0:
                 break
-            x = [float(i) for i in x.split(',')]
+            try:
+                x = [float(i) for i in x.split(',')]
+            except ValueError as _:
+                raise ValueError(f"Please check the input format, making sure it is separated by , in Ascii.")
             if len(x) != utils.data_size:
                 raise RuntimeError(f"Unexpected data input length. Expected:{utils.data_size}")
             queue.append(x)
