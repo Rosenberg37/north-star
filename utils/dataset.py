@@ -49,7 +49,7 @@ class CustomDataset(Dataset):
     def __len__(self):
         return self.length[-1]
 
-    def __getitem__(self, index: int) -> tuple[Tensor, Tensor]:
+    def __getitem__(self, index: int):
         sample_index = self.get_sample_index(index)
         assert sample_index >= 0
         start = 0 if sample_index == 0 else index - self.length[sample_index]
