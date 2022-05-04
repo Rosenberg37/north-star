@@ -5,7 +5,6 @@ from torch.nn import functional
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-import algo
 import utils
 from utils import CustomDataset
 
@@ -22,7 +21,7 @@ class Trainer:
 
         self.train_dataset = CustomDataset(data_file, window_size=utils.window_size)
 
-        self.model = algo.Model()
+        self.model = utils.Model(utils.data_size)
         if in_model_file is not None:
             self.model.load_state_dict(torch.load(in_model_file))
         self.optimizer = self.create_optimizer()

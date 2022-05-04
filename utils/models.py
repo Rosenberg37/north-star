@@ -2,7 +2,7 @@ from torch import Tensor, nn
 
 
 class Model(nn.Module):
-    def __init__(self, input_size: int = 90, hidden_size: int = 128, num_layers: int = 1, num_labels: int = 6):
+    def __init__(self, input_size: int, hidden_size: int = 128, num_layers: int = 1, num_labels: int = 6):
         super(Model, self).__init__()
         self.transform = nn.Linear(input_size, hidden_size)
         self.rnn = nn.GRU(input_size=hidden_size, hidden_size=hidden_size, num_layers=num_layers, batch_first=True)
