@@ -4,7 +4,7 @@ from .predictor import *
 from .trainer import *
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-window_size: int = 20
+window_size: int = 40
 data_size: int = 90
 
 label2idx = {
