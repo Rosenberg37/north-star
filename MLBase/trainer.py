@@ -9,6 +9,8 @@ import utils
 from utils import CustomDataset
 
 logger = logging.getLogger("north_star")
+
+
 class Trainer:
     def __init__(self, model, epochs: int, data_file: str, out_model_file: str, in_model_file: str = None, debug: bool = False):
         self.epochs: int = epochs
