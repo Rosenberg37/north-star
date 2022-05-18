@@ -80,7 +80,7 @@ Speed up the IO by transforming data format into csv.
 
 ### Update the interface to the latest version.
 
-### SVM
+#### SVM
 
 precision recall f1-score support
 
@@ -96,7 +96,7 @@ precision recall f1-score support
 macro avg 0.76 0.81 0.79 18976
 weighted avg 0.85 0.91 0.88 18976
 
-### KNN
+#### KNN
 
               precision    recall  f1-score   support
 
@@ -112,7 +112,7 @@ weighted avg 0.85 0.91 0.88 18976
 macro avg 0.52 0.65 0.46 18976
 weighted avg 0.82 0.69 0.67 18976
 
-### NaiveBayes
+#### NaiveBayes
 
               precision    recall  f1-score   support
 
@@ -128,7 +128,7 @@ weighted avg 0.82 0.69 0.67 18976
 macro avg 0.84 0.89 0.86 18976
 weighted avg 0.96 0.95 0.96 18976
 
-### DecisionTree
+#### DecisionTree
 
               precision    recall  f1-score   support
 
@@ -143,3 +143,69 @@ weighted avg 0.96 0.95 0.96 18976
 
 macro avg 0.45 0.54 0.41 18976
 weighted avg 0.48 0.54 0.47 18976
+
+### Down-sample
+
+#### SVM
+
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00      5422
+           1       1.00      1.00      1.00      5407
+           2       0.78      0.99      0.87      5615
+           3       0.92      1.00      0.95       489
+           4       0.89      0.90      0.89       494
+           5       0.00      0.00      0.00      1549
+
+    accuracy                           0.91     18976
+
+macro avg 0.76 0.81 0.79 18976
+weighted avg 0.85 0.91 0.88 18976
+
+#### KNN
+
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00      5422
+           1       0.82      1.00      0.90      5407
+           2       1.00      0.25      0.40      5615
+           3       0.16      0.93      0.27       489
+           4       0.13      0.73      0.22       494
+           5       0.00      0.00      0.00      1549
+
+    accuracy                           0.69     18976
+
+macro avg 0.52 0.65 0.47 18976
+weighted avg 0.82 0.69 0.67 18976
+
+#### NaiveBayes
+
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00      5422
+           1       1.00      0.98      0.99      5407
+           2       0.94      0.94      0.94      5615
+           3       0.77      1.00      0.87       489
+           4       0.43      0.44      0.44       494
+           5       1.00      0.97      0.98      1549
+
+    accuracy                           0.96     18976
+
+macro avg 0.86 0.89 0.87 18976
+weighted avg 0.96 0.96 0.96 18976
+
+#### DecisionTree
+
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00      5422
+           1       0.00      0.00      0.00      5407
+           2       0.41      0.75      0.53      5615
+           3       0.69      0.66      0.67       489
+           4       0.19      0.92      0.31       494
+           5       0.49      0.08      0.14      1549
+
+    accuracy                           0.56     18976
+
+macro avg 0.46 0.57 0.44 18976
+weighted avg 0.47 0.56 0.48 18976
