@@ -69,4 +69,9 @@ Speed up the IO by transforming data format into csv.
 ### Solve the failure on the evaluation by set large window_size.
 
 ## 5.11 Progress achieved
-Involved in integral test.
+### Involved in integral test.
+
+## 5.18 Progress achieved
+### Implementation for multiple algorithms, including **SVM** and **KNN**.
+### Update the inteface to the latest vesion.
+
