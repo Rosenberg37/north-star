@@ -72,6 +72,7 @@ Speed up the IO by transforming data format into csv.
 ### Involved in integral test.
 
 ## 5.18 Progress achieved
-### Implementation for multiple algorithms, including **SVM** and **KNN**.
+### Implementation for multiple algorithms, including **SVM**, **KNN**, **Naive Bayes** and **DecisionTree**.
+### The inteface is easy to expand to other machine learning methods included in `sklearn`.
 ### Update the inteface to the latest vesion.
 
