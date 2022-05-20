@@ -1,13 +1,15 @@
-import pytest
-from sklearn import metrics, naive_bayes
 import time
-from MLBase.trainer import Trainer
-from MLBase.predictor import Predictor
+
+from sklearn import metrics, naive_bayes
 from torch.utils.data import DataLoader
-from utils.argparser import TrainParser
-from utils.dataset import CustomDataset
+
 import utils
-# to test the models, in my point of view we can't execute unit tests because we will be dependent of the other modules that can be tested like 
+from MLBase.predictor import Predictor
+from MLBase.trainer import Trainer
+from utils.dataset import CustomDataset
+
+
+# to test the models, in my point of view we can't execute unit tests because we will be dependent of the other modules that can be tested like
 # (utils module methods) or external models like sklearn etc.
 # 
 # So I talk with professor Mestre and he advised to do tests to the models based on the metrics that the model give, about the execution time(more necessary 
@@ -28,41 +30,42 @@ class TestMLBaseNaiveBayes:
     # I defined the accuracy of the model should be major than 0.8
     def test_accuracy_model(self):
         model = naive_bayes.GaussianNB()
-        trainer = Trainer(model,data_file="data",out_model_file='parameters.pt',epochs=20,debug=False)
+        trainer = Trainer(model, data_file="data", out_model_file='parameters.pt', epochs=20, debug=False)
         trainer()
 
-        test_X,test_Y=self.get_test_dataloader()
+        test_X, test_Y = self.get_test_dataloader()
         test_start = time.perf_counter()
         predicts = trainer.model.predict(test_X)
         test_end = time.perf_counter()
-        accuracy=metrics.accuracy_score(predicts,test_Y)
-        print("Accuracy:",accuracy)
-        assert accuracy> 0.9
-    #Test the time of training a model
+        accuracy = metrics.accuracy_score(predicts, test_Y)
+        print("Accuracy:", accuracy)
+        assert accuracy > 0.9
+
+    # Test the time of training a model
     # defined maximum 1 second
     #
     def test_time_train(self):
         model = naive_bayes.GaussianNB()
         test_start = time.perf_counter()
-        trainer = Trainer(model,data_file="data",out_model_file='parameters.pt',epochs=20,debug=False)
-        
+        trainer = Trainer(model, data_file="data", out_model_file='parameters.pt', epochs=20, debug=False)
+
         trainer()
         test_end = time.perf_counter()
 
-        time_spent= test_end-test_start
-        #print("Time End:",test_start)
-        #print("Time Start:",test_end)
-        print("Time:",time_spent)
+        time_spent = test_end - test_start
+        # print("Time End:",test_start)
+        # print("Time Start:",test_end)
+        print("Time:", time_spent)
         assert time_spent < 1
 
-    #Test the time of prediction a motion
+    # Test the time of prediction a motion
     #
-    #Predictor code needs to be changed( 1 )
+    # Predictor code needs to be changed( 1 )
     def test_time_predict(self):
         # model = naive_bayes.GaussianNB()
         # test_start = time.perf_counter()
         # predictor = Predictor(model,data_file="data",out_model_file='parameters.pt',epochs=20,debug=False)
-        
+
         # predictor()
         # test_end = time.perf_counter()
 
@@ -72,31 +75,30 @@ class TestMLBaseNaiveBayes:
         # print("Time:",time_spent)
         # assert time_spent < 1
         assert True
-    
+
     # Test when the input values are changed.
     # Predictor code needs to be changed( 1 )
     def test_predictor_wrong_input_format(self):
         model = naive_bayes.GaussianNB()
-        predictor = Predictor(model,data_file="data",out_model_file='parameters.pt',epochs=20,debug=False)
-        #is important to change the way how to input and output data in the predictor. To able to test differents inputs.
-        
-        #with pytest.raises(ValueError) as _:
+        predictor = Predictor(model, data_file="data", out_model_file='parameters.pt', epochs=20, debug=False)
+        # is important to change the way how to input and output data in the predictor. To able to test differents inputs.
+
+        # with pytest.raises(ValueError) as _:
         #   predictor()
 
-        
         assert True
 
     # Test when the input values have different lenghts.
     # Predictor code needs to be changed( 1 )
     def test_predictor_wrong_input_lenght(self):
         model = naive_bayes.GaussianNB()
-        predictor = Predictor(model,data_file="data",out_model_file='parameters.pt',epochs=20,debug=False)
-        #is important to change the way how to input and output data in the predictor. To able to test differents inputs.
-        
-        #with pytest.raises(RuntimeError) as _:
+        predictor = Predictor(model, data_file="data", out_model_file='parameters.pt', epochs=20, debug=False)
+        # is important to change the way how to input and output data in the predictor. To able to test differents inputs.
+
+        # with pytest.raises(RuntimeError) as _:
         #   predictor()
         assert True
-    
+
     # Insert some inputs on the predictor and see if result is the expected like, done in another test:
     # @pytest.mark.parametrize(
     #     "test_input,expected",
@@ -114,15 +116,13 @@ class TestMLBaseNaiveBayes:
     #     ]
     # )
     def test_predictor_input_output(self):
-        #is important to change the way how to input and output data in the predictor. To able to test differents inputs.
+        # is important to change the way how to input and output data in the predictor. To able to test differents inputs.
         assert True
 
-    #get test data
+    # get test data
     def get_test_dataloader(self):
         dataset = CustomDataset('tests/tests_data', window_size=utils.window_size)
         dataloader = DataLoader(dataset, batch_size=len(dataset), shuffle=True)
         X, Y = next(iter(dataloader))
         X = X.reshape(len(dataset), -1).numpy()
         return X, Y
-  
-        
