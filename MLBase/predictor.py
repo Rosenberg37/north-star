@@ -6,7 +6,7 @@ import numpy as np
 
 import utils
 
-sys.stdin = codecs.open('../dlf_walk_02.csv')
+sys.stdin = codecs.open('dlf_walk_02.csv')
 
 
 class Predictor:
