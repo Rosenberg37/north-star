@@ -15,12 +15,19 @@ logger = logging.getLogger("north_star")
 
 
 class Trainer:
-    def __init__(self, epochs: int, data_file: str, out_model_file: str, in_model_file: str = None, debug: bool = False):
+    def __init__(
+            self,
+            model: nn.Module,
+            epochs: int,
+            data_file: str,
+            out_model_file: str,
+            in_model_file: str = None,
+            debug: bool = False
+    ):
         self.epochs: int = epochs
 
         self.out_model_file: str = out_model_file
 
-        model = utils.Model(utils.data_size)
         if in_model_file is not None:
             model.load_state_dict(torch.load(in_model_file))
         optimizer = self.create_optimizer(model)
@@ -76,7 +83,7 @@ class Trainer:
 
     @staticmethod
     def get_eval_dataloader(batch_size: int):
-        eval_dataset = CustomDataset('eval', window_size=utils.window_size)
+        eval_dataset = CustomDataset('../eval', window_size=utils.window_size)
         return DataLoader(eval_dataset, batch_size=batch_size, shuffle=True)
 
     def __call__(self):

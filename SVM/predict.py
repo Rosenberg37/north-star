@@ -1,6 +1,7 @@
-from utils import PredictParser
-from MLBase import Predictor
 import sklearn
+
+from utils import PredictParser
+from utils.MLBase import Predictor
 
 if __name__ == '__main__':
     parser = PredictParser()
@@ -8,5 +9,3 @@ if __name__ == '__main__':
     model = sklearn.svm.SVC(gamma='scale')
     predictor = Predictor(model, **vars(args))
     predictor()
-
-

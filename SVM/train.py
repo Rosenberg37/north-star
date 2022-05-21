@@ -1,7 +1,7 @@
-from utils import TrainParser
-from MLBase.trainer import Trainer
 import sklearn
-from sklearn.linear_model import SGDClassifier
+
+from utils import TrainParser
+from utils.MLBase.trainer import Trainer
 
 if __name__ == '__main__':
     parser = TrainParser()

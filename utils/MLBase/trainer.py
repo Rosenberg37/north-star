@@ -45,7 +45,8 @@ class Trainer:
         X = X.reshape(len(dataset) // 10, -1).numpy()
         return X, Y
 
-    def get_eval_dataloader(self):
+    @staticmethod
+    def get_eval_dataloader():
         dataset = CustomDataset('../eval', window_size=utils.window_size)
         dataloader = DataLoader(dataset, batch_size=len(dataset), shuffle=True)
         X, Y = next(iter(dataloader))

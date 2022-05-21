@@ -1,7 +1,7 @@
 from sklearn import naive_bayes
 
-from MLBase.trainer import Trainer
 from utils import TrainParser
+from utils.MLBase.trainer import Trainer
 
 if __name__ == '__main__':
     parser = TrainParser()

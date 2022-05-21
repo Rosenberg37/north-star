@@ -4,8 +4,8 @@ from sklearn import metrics, naive_bayes
 from torch.utils.data import DataLoader
 
 import utils
-from MLBase.predictor import Predictor
-from MLBase.trainer import Trainer
+from utils.MLBase.predictor import Predictor
+from utils.MLBase.trainer import Trainer
 from utils.dataset import CustomDataset
 
 

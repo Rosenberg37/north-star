@@ -1,7 +1,7 @@
 import sklearn
 
-from MLBase import Predictor
 from utils import PredictParser
+from utils.MLBase import Predictor
 
 if __name__ == '__main__':
     parser = PredictParser()
