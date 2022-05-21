@@ -7,7 +7,7 @@ class TrainParser(argparse.ArgumentParser):
         self.add_argument("data_file", nargs='?', type=str, default='../data')
         self.add_argument('out_model_file', nargs='?', type=str, default='parameters.pt')
         self.add_argument('in_model_file', nargs='?', type=str, default=None)
-        self.add_argument('--epochs', type=int, default=20)
+        self.add_argument('--epochs', type=int, default=5)
         self.add_argument('--debug', action='store_true', default=True)
 
 

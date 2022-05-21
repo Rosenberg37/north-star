@@ -34,7 +34,7 @@ class Predictor:
 
             sample = torch.tensor(queue)
             with torch.no_grad():
-                print(self.model(sample.unsqueeze(0)).argmax().item())
+                print(utils.idx2label[self.model(sample.unsqueeze(0)).argmax().item()])
             queue.pop(0)
 
     def __call__(self):

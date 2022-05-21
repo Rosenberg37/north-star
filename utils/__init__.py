@@ -4,8 +4,8 @@ from .argparser import *
 from .dataset import *
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-window_size: int = 40
-data_size: int = 90
+window_size: int = 20
+data_size: int = 45
 
 label2idx = {
     'sit': 0,
