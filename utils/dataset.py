@@ -54,6 +54,8 @@ class CustomDataset(Dataset):
         start = 0 if sample_index == 0 else index - self.length[sample_index]
         sample = self.samples[sample_index][start: start + self.window_size]
         gold = self.golds[sample_index]
+        if sample.shape[-1] == 45:
+            return sample, gold
         return torch.cat([sample[:, :30], sample[:, 75:]], dim=-1), gold
 
     @staticmethod
