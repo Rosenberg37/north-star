@@ -5,8 +5,52 @@
         "desc": "Gated recurrent units (GRUs) are a gating mechanism in recurrent neural networks, introduced in 2014 by Kyunghyun Cho et al. The GRU is like a long short-term memory (LSTM) with a forget gate, but has fewer parameters than LSTM, as it lacks an output gate. GRU's performance on certain tasks of polyphonic music modeling, speech signal modeling and natural language processing was found to be similar to that of LSTM.GRUs have been shown to exhibit better performance on certain smaller and less frequent datasets.",
         "base": "$ALGO/RNN/base.pt",
         "entrypoint": {
-            "train": ["/usr/bin/env", "python3", "$ALGO/RNN/train.py"],
-            "predict": ["/usr/bin/env", "python3", "$ALGO/RNN/predict.py"]
+            "train": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/RNN/train.py"
+            ],
+            "predict": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/RNN/predict.py"
+            ]
+        }
+    },
+    "hybrid": {
+        "name": "hybrid",
+        "display": "Hybrid",
+        "desc": "Hybrid model fuse recurrent network and convolutional network to build up the motion classifier.",
+        "base": "$ALGO/Hybrid/base.pt",
+        "entrypoint": {
+            "train": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/RNN/train.py"
+            ],
+            "predict": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/RNN/predict.py"
+            ]
+        }
+    },
+    "FFN": {
+        "name": "FFN",
+        "display": "Feed Forward",
+        "desc": "Feed Forward model use multiple layer perceptron to classify the motion. In particular, this model do the spectral analysis first instead of direct send the motion datas.",
+        "base": "$ALGO/Hybrid/base.pt",
+        "entrypoint": {
+            "train": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/RNN/train.py"
+            ],
+            "predict": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/RNN/predict.py"
+            ]
         }
     },
     "naivebayes": {
@@ -15,8 +59,16 @@
         "desc": "Naive Bayes is a simple technique for constructing classifiers: models that assign class labels to problem instances, represented as vectors of feature values, where the class labels are drawn from some finite set. There is not a single algorithm for training such classifiers, but a family of algorithms based on a common principle: all naive Bayes classifiers assume that the value of a particular feature is independent of the value of any other feature, given the class variable. For example, a fruit may be considered to be an apple if it is red, round, and about 10 cm in diameter. A naive Bayes classifier considers each of these features to contribute independently to the probability that this fruit is an apple, regardless of any possible correlations between the color, roundness, and diameter features.",
         "base": "$ALGO/NaiveBayes/base.pt",
         "entrypoint": {
-            "train": ["/usr/bin/env", "python3", "$ALGO/NaiveBayes/train.py"],
-            "predict": ["/usr/bin/env", "python3", "$ALGO/NaiveBayes/predict.py"]
+            "train": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/NaiveBayes/train.py"
+            ],
+            "predict": [
+                "/usr/bin/env",
+                "python3",
+                "$ALGO/NaiveBayes/predict.py"
+            ]
         }
     },
     "knn": {
@@ -37,16 +89,6 @@
         "entrypoint": {
             "train": ["/usr/bin/env", "python3", "$ALGO/SVM/train.py"],
             "predict": ["/usr/bin/env", "python3", "$ALGO/SVM/predict.py"]
-        }
-    },
-    "randomforest": {
-        "name": "randomforest",
-        "display": "RandomForest",
-        "desc": "Random forest is a commonly-used machine learning algorithm trademarked by Leo Breiman and Adele Cutler, which combines the output of multiple decision trees to reach a single result. Its ease of use and flexibility have fueled its adoption, as it handles both classification and regression problems.",
-        "base": "$ALGO/RandomForest/base.pt",
-        "entrypoint": {
-            "train": ["/usr/bin/env", "python3", "$ALGO/RandomForest/train.py"],
-            "predict": ["/usr/bin/env", "python3", "$ALGO/RandomForest/predict.py"]
         }
     },
     "decisiontree": {
