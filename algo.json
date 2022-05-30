@@ -22,7 +22,7 @@
     "knn": {
         "name": "knn",
         "display": "KNN",
-        "desc": " ",
+        "desc": "K-Nearest Neighbors is a machine learning technique and algorithm that can be used for both regression and classification tasks. K-Nearest Neighbors examines the labels of a chosen number of data points surrounding a target data point, in order to make a prediction about the class that the data point falls into. K-Nearest Neighbors (KNN) is a conceptually simple yet very powerful algorithm, and for those reasons, it’s one of the most popular machine learning algorithms. ",
         "base": "$ALGO/KNN/base.pt",
         "entrypoint": {
             "train": ["/usr/bin/env", "python3", "$ALGO/KNN/train.py"],
@@ -32,7 +32,7 @@
     "svm": {
         "name": "svm",
         "display": "SVM",
-        "desc": " ",
+        "desc": "SVM stands for Support Vector Machine. In the SVM algorithm, each point is represented as a data item within the n-dimensional space where the value of each feature is the value of a specific coordinate. After plotting, classification has been performed by finding hype plane, which differentiates two classes. Refer to the below image to understand this concept.",
         "base": "$ALGO/SVM/base.pt",
         "entrypoint": {
             "train": ["/usr/bin/env", "python3", "$ALGO/SVM/train.py"],
@@ -42,7 +42,7 @@
     "randomforest": {
         "name": "randomforest",
         "display": "RandomForest",
-        "desc": " ",
+        "desc": "Random forest is a commonly-used machine learning algorithm trademarked by Leo Breiman and Adele Cutler, which combines the output of multiple decision trees to reach a single result. Its ease of use and flexibility have fueled its adoption, as it handles both classification and regression problems.",
         "base": "$ALGO/RandomForest/base.pt",
         "entrypoint": {
             "train": ["/usr/bin/env", "python3", "$ALGO/RandomForest/train.py"],
@@ -52,7 +52,7 @@
     "decisiontree": {
         "name": "decisiontree",
         "display": "DecisionTree",
-        "desc": " ",
+        "desc": "A decision tree is a non-parametric supervised learning algorithm, which is utilized for both classification and regression tasks. It has a hierarchical, tree structure, which consists of a root node, branches, internal nodes and leaf nodes.",
         "base": "$ALGO/DecisionTree/base.pt",
         "entrypoint": {
             "train": ["/usr/bin/env", "python3", "$ALGO/DecisionTree/train.py"],
