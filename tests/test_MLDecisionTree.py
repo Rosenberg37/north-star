@@ -1,13 +1,15 @@
+import io
+import sys
 import time
-from torch.utils.data import DataLoader
+
+import pytest
 from sklearn import metrics, tree
+from torch.utils.data import DataLoader
+
 import utils
 from utils.MLBase.predictor import Predictor
 from utils.MLBase.trainer import Trainer
 from utils.dataset import CustomDataset
-import sys
-import pytest
-import io
 
 
 class TestMLDecisionTree:
@@ -47,45 +49,45 @@ class TestMLDecisionTree:
         model = tree.DecisionTreeClassifier()
         test_start = time.perf_counter()
 
-        predictor = Predictor(model,"parameters.pt")
+        predictor = Predictor(model, "parameters.pt")
         stdin = sys.stdin
-        sys.stdin = open('tests/tests_data/test_predict_time.csv','r') 
+        sys.stdin = open('tests/tests_data/test_predict_time.csv', 'r')
         predictor()
         test_end = time.perf_counter()
-        sys.stdin=stdin
-        time_spent= test_end-test_start
-        print("Time End:",test_start)
-        print("Time Start:",test_end)
-        print("Time:",time_spent)
+        sys.stdin = stdin
+        time_spent = test_end - test_start
+        print("Time End:", test_start)
+        print("Time Start:", test_end)
+        print("Time:", time_spent)
         assert time_spent < 0.2
-        #assert True
+        # assert True
 
     # Test when the input values are changed.
     # Predictor code needs to be changed( 1 )
     def test_predictor_wrong_input_format(self):
         model = tree.DecisionTreeClassifier()
-        predictor = Predictor(model,"parameters.pt")
+        predictor = Predictor(model, "parameters.pt")
         stdin = sys.stdin
-        sys.stdin = open('tests/tests_data/test_wrong_format.csv','r') 
-        
+        sys.stdin = open('tests/tests_data/test_wrong_format.csv', 'r')
+
         with pytest.raises(ValueError) as _:
             predictor()
 
-        sys.stdin=stdin
+        sys.stdin = stdin
 
     # Test when the input values have different lenghts.
     # Predictor code needs to be changed( 1 )
 
     def test_predictor_wrong_input_lenght(self):
         model = tree.DecisionTreeClassifier()
-        predictor = Predictor(model,"parameters.pt")
+        predictor = Predictor(model, "parameters.pt")
         stdin = sys.stdin
-        sys.stdin = open('tests/tests_data/test_wrong_lenght.csv','r') 
-        
+        sys.stdin = open('tests/tests_data/test_wrong_lenght.csv', 'r')
+
         with pytest.raises(RuntimeError) as _:
             predictor()
 
-        sys.stdin=stdin
+        sys.stdin = stdin
 
     # Insert some inputs on the predictor and see if result is the expected like, done in another test:
     @pytest.mark.parametrize(
@@ -99,19 +101,19 @@ class TestMLDecisionTree:
             ("tests/tests_data/test_walk.csv", 'walk'),
         ]
     )
-    def test_predictor_input_output(self,inputdata,expectedresult):
+    def test_predictor_input_output(self, inputdata, expectedresult):
         model = tree.DecisionTreeClassifier()
-        predictor = Predictor(model,"parameters.pt")
+        predictor = Predictor(model, "parameters.pt")
         stdin = sys.stdin
         stdout = sys.stdout
         sys.stdout = buffer = io.StringIO()
-        sys.stdin = open(inputdata,'r') 
+        sys.stdin = open(inputdata, 'r')
         predictor()
-        sys.stdout = stdout 
+        sys.stdout = stdout
         value = buffer.getvalue()
-        value= value.replace('\n','')
-        sys.stdin=stdin
-        assert expectedresult==value
+        value = value.replace('\n', '')
+        sys.stdin = stdin
+        assert expectedresult == value
 
     # get test data
     def get_test_dataloader(self):
