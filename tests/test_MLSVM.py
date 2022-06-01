@@ -16,7 +16,7 @@ class TestMLSVM:
 
     def test_accuracy_model(self):
         model = svm.SVC(gamma='scale')
-        trainer = Trainer(model, data_file="data", out_model_file='tests/parameters.pt', epochs=20, debug=False)
+        trainer = Trainer(model, data_file="data", out_model_file='tests/FFN.pt', epochs=20, debug=False)
         trainer()
 
         test_X, test_Y = self.get_test_dataloader()
@@ -33,7 +33,7 @@ class TestMLSVM:
     def test_time_train(self):
         model = svm.SVC(gamma='scale')
         test_start = time.perf_counter()
-        trainer = Trainer(model, data_file="data", out_model_file='tests/parameters.pt', epochs=20, debug=False)
+        trainer = Trainer(model, data_file="data", out_model_file='tests/FFN.pt', epochs=20, debug=False)
 
         trainer()
         test_end = time.perf_counter()

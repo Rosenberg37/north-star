@@ -64,7 +64,7 @@ class TestMLBaseNaiveBayes:
     def test_time_predict(self):
         # model = naive_bayes.GaussianNB()
         # test_start = time.perf_counter()
-        # predictor = Predictor(model,data_file="data",out_model_file='parameters.pt',epochs=20,debug=False)
+        # predictor = Predictor(model,data_file="data",out_model_file='FFN.pt',epochs=20,debug=False)
 
         # predictor()
         # test_end = time.perf_counter()
