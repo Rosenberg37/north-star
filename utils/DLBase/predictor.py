@@ -13,7 +13,8 @@ class Predictor:
             in_model_file: str
     ):
         self.model = model
-        self.model.load_state_dict(torch.load(in_model_file))
+        map_location = torch.device("cpu") if not torch.cuda.is_available() else None
+        model.load_state_dict(torch.load(in_model_file, map_location=map_location))
 
     def predict(self):
         queue = []
